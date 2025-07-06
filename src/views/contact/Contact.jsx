@@ -6,7 +6,6 @@ import ContactForm from './ContactForm/ContactForm';
 import ContactMap from './ContactMap/ContactMap';
 
 const Contact = () => {
-  // render
   return (
     <>
       {/* <HeroSection /> */}

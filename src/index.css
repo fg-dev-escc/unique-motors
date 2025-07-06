@@ -756,3 +756,83 @@ input:focus, select:focus, textarea:focus {
   border-bottom-color: #4F5DEC;
   color: #4F5DEC;
 }
+
+/* Comments and Bidding History Styles */
+.bid-avatar-container {
+  position: relative;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-right: 15px;
+}
+
+.user-avatar {
+  width: 60px;
+  height: 60px;
+  background-color: #f8f9fa;
+  border: 2px solid #e9ecef;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #4F5DEC;
+  font-size: 1.5rem;
+}
+
+.winning-badge {
+  top: -8px;
+  right: -8px;
+  font-size: 10px;
+  min-width: 20px;
+  height: 20px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.car-review-rating i {
+  margin-right: 2px;
+  transition: all 0.2s ease;
+}
+
+.car-review-rating i:hover {
+  transform: scale(1.2);
+}
+
+.auction-summary {
+  border: 1px solid #e9ecef;
+}
+
+.auction-summary .text-primary {
+  color: #4F5DEC !important;
+}
+
+.auction-summary .text-danger {
+  color: #dc3545 !important;
+}
+
+.blog-comments-single {
+  padding: 20px 0;
+  border-bottom: 1px solid #e9ecef;
+  display: flex;
+  align-items: flex-start;
+}
+
+.blog-comments-single:last-child {
+  border-bottom: none;
+}
+
+.blog-comments-content {
+  flex: 1;
+}
+
+.blog-comments-form {
+  background: #f8f9fa;
+  border-radius: 10px;
+  padding: 30px;
+  margin-top: 30px;
+}

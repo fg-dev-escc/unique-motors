@@ -2,38 +2,38 @@ export const faqConfig = {
   // data
   data: {
     content: {
-      tagline: "Faq's",
+      tagline: "Preguntas Frecuentes",
       title: {
-        before: "General",
-        highlight: "frequently",
-        after: "asked questions"
+        before: "Preguntas",
+        highlight: "frecuentes",
+        after: "sobre subastas"
       },
-      description: "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even."
+      description: "Resolvemos las dudas más comunes sobre nuestro sistema de subastas de vehículos y el uso de tokens. Si tienes más preguntas, no dudes en contactarnos."
     },
     image: {
       src: "assets/img/faq/01.jpg",
-      alt: "FAQ"
+      alt: "Preguntas Frecuentes"
     },
     faqs: [
       {
         id: "One",
-        question: "How Long Does A Car Rent Take ?",
-        answer: "We denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire. Ante odio dignissim quam, vitae pulvinar turpis erat ac elit eu orci id odio facilisis pharetra."
+        question: "¿Cómo funciona el sistema de tokens?",
+        answer: "Los tokens son créditos digitales que compras para participar en nuestras subastas. Cada puja consume una cantidad específica de tokens dependiendo del vehículo. Puedes comprar tokens de forma segura desde tu perfil."
       },
       {
         id: "Two",
-        question: "How Can I Become A Member ?",
-        answer: "We denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire. Ante odio dignissim quam, vitae pulvinar turpis erat ac elit eu orci id odio facilisis pharetra."
+        question: "¿Cómo puedo registrarme?",
+        answer: "El registro es muy sencillo. Solo necesitas proporcionar tu información básica, verificar tu identidad y listo. Una vez registrado, puedes comprar tokens y comenzar a participar en las subastas inmediatamente."
       },
       {
         id: "Three",
-        question: "What Payment Gateway You Support ?",
-        answer: "We denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire. Ante odio dignissim quam, vitae pulvinar turpis erat ac elit eu orci id odio facilisis pharetra."
+        question: "¿Qué métodos de pago aceptan?",
+        answer: "Aceptamos todas las tarjetas de crédito y débito principales, transferencias bancarias y PSE. Todos los pagos son procesados de forma segura con encriptación de nivel bancario para proteger tu información."
       },
       {
         id: "Four",
-        question: "How Can I Cancel My Request ?",
-        answer: "We denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire. Ante odio dignissim quam, vitae pulvinar turpis erat ac elit eu orci id odio facilisis pharetra."
+        question: "¿Cómo cancelo mi participación?",
+        answer: "Puedes retirar tu participación en una subasta siempre y cuando no seas el postor más alto en ese momento. Los tokens utilizados se reembolsarán a tu cuenta. Una vez que eres el ganador, la transacción es final."
       }
     ]
   }

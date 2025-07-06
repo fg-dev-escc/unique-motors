@@ -3,7 +3,6 @@ import React, { useState } from 'react';
 import ProfileLayout from '../ProfileLayout';
 
 const TransactionHistory = () => {
-  // Mock data - en producción esto vendría de Redux/API
   const [transactions] = useState([
     {
       id: '#12345',

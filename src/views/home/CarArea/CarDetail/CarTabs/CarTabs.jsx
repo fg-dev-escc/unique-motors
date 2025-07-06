@@ -156,64 +156,133 @@ const CarTabs = ({ activeTab, setActiveTab, car, isActive }) => {
           <div className="tab-pane fade show active">
             <div className="car-single-review">
               <div className="blog-comments">
-                <h3>{data.tabs.bidHistory} (05)</h3>
-                <div className="blog-comments-wrapper">
-                  {data.content.bidHistory.map((bid, index) => (
-                    <div key={index} className="blog-comments-single">
-                      <img src={bid.avatar} alt="thumb" />
-                      <div className="blog-comments-content">
-                        <h5>{bid.bidder}</h5>
-                        <span><i className="far fa-clock"></i> {bid.date}</span>
-                        <p><strong>{data.labels.bidAmount}: {bid.amount}</strong> - {bid.comment}</p>
-                      </div>
+                <h3>Historial de Pujas (08)</h3>
+                
+                <div className="auction-summary mb-4 p-3 bg-light rounded">
+                  <div className="row">
+                    <div className="col-md-3">
+                      <strong>Puja Actual:</strong><br />
+                      <span className="text-primary fs-5">$28,500,000</span>
                     </div>
-                  ))}
+                    <div className="col-md-3">
+                      <strong>Puja Inicial:</strong><br />
+                      <span>$20,000,000</span>
+                    </div>
+                    <div className="col-md-3">
+                      <strong>Precio Reserva:</strong><br />
+                      <span>$30,000,000</span>
+                    </div>
+                    <div className="col-md-3">
+                      <strong>Tiempo Restante:</strong><br />
+                      <span className="text-danger">2 días 14 horas</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="blog-comments-wrapper">
+                  <div className="blog-comments-single">
+                    <div className="bid-avatar-container">
+                      <i className="fas fa-user fs-3 text-primary"></i>
+                      <span className="badge bg-success position-absolute top-0 start-100 translate-middle">
+                        Ganando
+                      </span>
+                    </div>
+                    <div className="blog-comments-content">
+                      <h5>
+                        Usuario***23
+                        <span className="badge bg-secondary ms-2">Puja Manual</span>
+                      </h5>
+                      <span><i className="far fa-clock"></i> 15/03/2024 14:30</span>
+                      <p>
+                        <strong>Monto de la puja: $28,500,000</strong>
+                        <span className="text-success ms-2">
+                          <i className="fas fa-trophy"></i> Puja ganadora actual
+                        </span>
+                      </p>
+                    </div>
+                  </div>
+                  
+                  <div className="blog-comments-single">
+                    <div className="bid-avatar-container">
+                      <i className="fas fa-robot fs-3 text-primary"></i>
+                    </div>
+                    <div className="blog-comments-content">
+                      <h5>
+                        AutoBid***67
+                        <span className="badge bg-secondary ms-2">Puja Automática</span>
+                      </h5>
+                      <span><i className="far fa-clock"></i> 15/03/2024 14:28</span>
+                      <p><strong>Monto de la puja: $28,000,000</strong></p>
+                    </div>
+                  </div>
+                  
+                  <div className="blog-comments-single">
+                    <div className="bid-avatar-container">
+                      <i className="fas fa-user fs-3 text-primary"></i>
+                    </div>
+                    <div className="blog-comments-content">
+                      <h5>
+                        Usuario***45
+                        <span className="badge bg-secondary ms-2">Puja Manual</span>
+                      </h5>
+                      <span><i className="far fa-clock"></i> 15/03/2024 14:25</span>
+                      <p><strong>Monto de la puja: $27,500,000</strong></p>
+                    </div>
+                  </div>
+                  
+                  <div className="blog-comments-single">
+                    <div className="bid-avatar-container">
+                      <i className="fas fa-user fs-3 text-primary"></i>
+                    </div>
+                    <div className="blog-comments-content">
+                      <h5>
+                        BidMaster***12
+                        <span className="badge bg-secondary ms-2">Puja Manual</span>
+                      </h5>
+                      <span><i className="far fa-clock"></i> 15/03/2024 14:20</span>
+                      <p><strong>Monto de la puja: $27,000,000</strong></p>
+                    </div>
+                  </div>
                 </div>
 
                 {isActive && (
                   <div className="blog-comments-form">
-                    <h3>{data.labels.placeBid}</h3>
+                    <h3>Realizar Puja</h3>
+                    <div className="alert alert-info">
+                      <i className="fas fa-info-circle"></i> 
+                      Tu puja debe ser mayor a $28,500,000. Incremento mínimo: $500,000
+                    </div>
+                    
                     <form>
                       <div className="row">
                         <div className="col-md-12">
                           <div className="form-group">
-                            <label>{data.labels.bidAmount}</label>
+                            <label>Monto de la Puja</label>
                             <input 
                               type="number" 
                               className="form-control" 
-                              placeholder={data.placeholders.bidAmount}
-                              min={car.precio + 1000}
+                              placeholder="Mínimo: $29,000,000"
+                              min="29000000"
+                              step="500000"
                             />
                           </div>
                         </div>
                         <div className="col-md-6">
                           <div className="form-group">
-                            <input 
-                              type="text" 
-                              className="form-control" 
-                              placeholder={data.placeholders.yourName}
-                            />
+                            <input type="text" className="form-control" placeholder="Tu Nombre*" />
                           </div>
                         </div>
                         <div className="col-md-6">
                           <div className="form-group">
-                            <input 
-                              type="email" 
-                              className="form-control" 
-                              placeholder={data.placeholders.yourEmail}
-                            />
+                            <input type="email" className="form-control" placeholder="Tu Email*" />
                           </div>
                         </div>
                         <div className="col-md-12">
                           <div className="form-group">
-                            <textarea 
-                              className="form-control" 
-                              rows="3" 
-                              placeholder={data.placeholders.comment}
-                            />
+                            <textarea className="form-control" rows="3" placeholder="Comentario opcional sobre tu puja..."></textarea>
                           </div>
                           <button type="submit" className="theme-btn">
-                            <i className="far fa-gavel"></i> {data.labels.submitBid}
+                            <i className="fas fa-gavel"></i> Realizar Puja
                           </button>
                         </div>
                       </div>
@@ -229,58 +298,99 @@ const CarTabs = ({ activeTab, setActiveTab, car, isActive }) => {
           <div className="tab-pane fade show active">
             <div className="car-single-review">
               <div className="blog-comments">
-                <h3>{data.tabs.comments} (04)</h3>
+                <h3>Comentarios (05)</h3>
                 <div className="blog-comments-wrapper">
-                  {data.content.comments.map((comment, index) => (
-                    <div key={index} className="blog-comments-single">
-                      <img src={comment.avatar} alt="thumb" />
-                      <div className="blog-comments-content">
-                        <h5>
-                          {comment.author}
-                          {comment.isVendor && (
-                            <span className="badge bg-primary ms-2">Vendedor</span>
-                          )}
-                        </h5>
-                        <span><i className="far fa-clock"></i> {comment.date}</span>
-                        <p>{comment.comment}</p>
+                  <div className="blog-comments-single">
+                    <img src="assets/img/blog/com-1.jpg" alt="thumb" />
+                    <div className="blog-comments-content">
+                      <h5>María González</h5>
+                      <div className="mb-2">
+                        <div className="car-single-rating d-inline-block me-3">
+                          <i className="fas fa-star"></i>
+                          <i className="fas fa-star"></i>
+                          <i className="fas fa-star"></i>
+                          <i className="fas fa-star"></i>
+                          <i className="fas fa-star"></i>
+                        </div>
+                        <span><i className="far fa-clock"></i> 15 Marzo, 2024</span>
                       </div>
+                      <p>Excelente vehículo, muy bien cuidado. El proceso de puja fue muy transparente y la comunicación con el vendedor fue perfecta. Totalmente recomendado.</p>
+                      <a href="#"><i className="far fa-reply"></i> Responder</a>
                     </div>
-                  ))}
+                  </div>
+                  
+                  <div className="blog-comments-single">
+                    <img src="assets/img/blog/com-2.jpg" alt="thumb" />
+                    <div className="blog-comments-content">
+                      <h5>Carlos Rodríguez</h5>
+                      <div className="mb-2">
+                        <div className="car-single-rating d-inline-block me-3">
+                          <i className="fas fa-star"></i>
+                          <i className="fas fa-star"></i>
+                          <i className="fas fa-star"></i>
+                          <i className="fas fa-star"></i>
+                          <i className="far fa-star"></i>
+                        </div>
+                        <span><i className="far fa-clock"></i> 12 Marzo, 2024</span>
+                      </div>
+                      <p>Buen auto, aunque tiene algunos detalles menores. El precio final fue justo considerando el estado del vehículo. La entrega fue puntual.</p>
+                      <a href="#"><i className="far fa-reply"></i> Responder</a>
+                    </div>
+                  </div>
+                  
+                  <div className="blog-comments-single">
+                    <img src="assets/img/blog/com-3.jpg" alt="thumb" />
+                    <div className="blog-comments-content">
+                      <h5>Ana López</h5>
+                      <div className="mb-2">
+                        <div className="car-single-rating d-inline-block me-3">
+                          <i className="fas fa-star"></i>
+                          <i className="fas fa-star"></i>
+                          <i className="fas fa-star"></i>
+                          <i className="fas fa-star"></i>
+                          <i className="fas fa-star"></i>
+                        </div>
+                        <span><i className="far fa-clock"></i> 10 Marzo, 2024</span>
+                      </div>
+                      <p>Increíble experiencia de compra. El auto superó mis expectativas y el vendedor fue muy honesto con todos los detalles. Definitivamente volvería a comprar aquí.</p>
+                      <a href="#"><i className="far fa-reply"></i> Responder</a>
+                    </div>
+                  </div>
                 </div>
 
                 {isActive && (
                   <div className="blog-comments-form">
-                    <h3>Realizar pregunta</h3>
+                    <h3>Dejar un Comentario</h3>
                     <form>
                       <div className="row">
-                        <div className="col-md-6">
-                          <div className="form-group">
-                            <input 
-                              type="text" 
-                              className="form-control" 
-                              placeholder="Su nombre"
-                            />
+                        <div className="col-md-12">
+                          <div className="form-group car-review-rating">
+                            <label>Tu Calificación</label>
+                            <div>
+                              <i className="far fa-star"></i>
+                              <i className="far fa-star"></i>
+                              <i className="far fa-star"></i>
+                              <i className="far fa-star"></i>
+                              <i className="far fa-star"></i>
+                            </div>
                           </div>
                         </div>
                         <div className="col-md-6">
                           <div className="form-group">
-                            <input 
-                              type="email" 
-                              className="form-control" 
-                              placeholder="Su email"
-                            />
+                            <input type="text" className="form-control" placeholder="Tu Nombre*" />
+                          </div>
+                        </div>
+                        <div className="col-md-6">
+                          <div className="form-group">
+                            <input type="email" className="form-control" placeholder="Tu Email*" />
                           </div>
                         </div>
                         <div className="col-md-12">
                           <div className="form-group">
-                            <textarea 
-                              className="form-control" 
-                              rows="4" 
-                              placeholder="Escriba su pregunta sobre el vehículo..."
-                            />
+                            <textarea className="form-control" rows="5" placeholder="Tu Comentario*"></textarea>
                           </div>
                           <button type="submit" className="theme-btn">
-                            <i className="far fa-comment"></i> Enviar pregunta
+                            <i className="far fa-paper-plane"></i> Enviar Comentario
                           </button>
                         </div>
                       </div>

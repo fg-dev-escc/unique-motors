@@ -5,7 +5,6 @@ import CarArea from './CarArea/CarArea';
 
 const Home = () => {
 
-  // render
   return (
     <>
       <HeroSection />

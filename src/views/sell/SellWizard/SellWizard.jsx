@@ -3,12 +3,14 @@ import React, { useState } from 'react';
 import PersonalInfo from './PersonalInfo/PersonalInfo';
 import CarInfo from './CarInfo/CarInfo';
 import PhotosInfo from './PhotosInfo/PhotosInfo';
+import SellConfirmation from '../SellConfirmation/SellConfirmation';
 
 import { sellWizardConfig } from './sellWizardConfig';
 
 const SellWizard = () => {
   // state
   const [currentStep, setCurrentStep] = useState(1);
+  const [showConfirmation, setShowConfirmation] = useState(false);
   const [formData, setFormData] = useState({
     // Datos personales
     nombre: '',
@@ -47,10 +49,43 @@ const SellWizard = () => {
 
   const handleSubmit = () => {
     console.log('Datos del formulario:', formData);
-    alert('¡Auto registrado exitosamente!');
+    setShowConfirmation(true);
+  };
+
+  const handleNewSubmission = () => {
+    setShowConfirmation(false);
+    setCurrentStep(1);
+    setFormData({
+      // Datos personales
+      nombre: '',
+      email: '',
+      telefono: '',
+      // Información del auto
+      marca: '',
+      modelo: '',
+      año: '',
+      combustible: '',
+      transmision: '',
+      kilometraje: '',
+      color: '',
+      motor: '',
+      precio: '',
+      descripcion: '',
+      // Imagen
+      images: []
+    });
   };
 
   // render
+  if (showConfirmation) {
+    return (
+      <SellConfirmation 
+        formData={formData}
+        onNewSubmission={handleNewSubmission}
+      />
+    );
+  }
+
   return (
     <div className="sell-wizard-area py-120">
       <div className="container">
