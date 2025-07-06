@@ -3,10 +3,8 @@ import React from 'react';
 import { partnerConfig } from './partnerConfig';
 
 const PartnerSection = () => {
-  // config
   const { data } = partnerConfig;
 
-  // render
   return (
     <div className="partner-area bg pt-50 pb-50">
       <div className="container">

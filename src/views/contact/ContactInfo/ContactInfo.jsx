@@ -3,10 +3,9 @@ import React from 'react';
 import { contactInfoConfig } from './contactInfoConfig';
 
 const ContactInfo = () => {
-  // config
+
   const { data } = contactInfoConfig;
 
-  // render
   return (
     <div className="contact-area py-120">
       <div className="container">

@@ -3,10 +3,9 @@ import React from 'react';
 import { serviceSectionConfig } from './serviceSectionConfig';
 
 const ServiceSection = () => {
-  // config
+
   const { data } = serviceSectionConfig;
 
-  // render
   return (
     <div id="servicios" className="service-area py-120">
       <div className="container">

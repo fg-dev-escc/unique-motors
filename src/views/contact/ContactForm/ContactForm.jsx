@@ -13,7 +13,6 @@ const ContactForm = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitMessage, setSubmitMessage] = useState('');
 
-  // config
   const { data } = contactFormConfig;
 
   // handlers

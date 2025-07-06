@@ -6,7 +6,6 @@ const CarInfo = ({ formData, updateFormData }) => {
   // config
   const { data } = carInfoConfig;
 
-  // render
   return (
     <div className="row">
       <div className="col-md-12 mb-4">
