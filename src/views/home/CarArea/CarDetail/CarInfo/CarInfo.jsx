@@ -1,10 +1,15 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 
 import { carInfoConfig } from './carInfoConfig';
+import BiddingInterface from './BiddingInterface/BiddingInterface';
 
 const CarInfo = ({ car, timeLeft, isActive, helpers }) => {
   // config
   const { data } = carInfoConfig;
+  
+  // redux state
+  const { user } = useSelector(state => state.userReducer);
 
   // render
   return (
@@ -46,32 +51,27 @@ const CarInfo = ({ car, timeLeft, isActive, helpers }) => {
           <sub>{data.labels.currentBid}</sub>
         </span>
         <a href="#" className="car-favorite-btn"><i className="far fa-heart"></i></a>
-        {isActive ? (
-          <a href="#" className="theme-btn">{data.labels.placeBid}</a>
-        ) : (
-          <span className="theme-btn disabled">{data.labels.auctionEnded}</span>
-        )}
       </div>
       
-      <div className="car-single-details">
-        <h5 className="mb-2">{data.labels.carDetails}</h5>
-        <ul className="car-list m-0">
-          <li><i className="far fa-car"></i>{data.labels.model}: {car.modelo}</li>
-          <li><i className="far fa-user-tie"></i>{car.capacidad} {data.labels.people}</li>
-          <li><i className="far fa-gas-pump"></i>{car.tipoCombustible}</li>
-          <li><i className="far fa-road"></i>{car.rendimiento}</li>
-          <li><i className="far fa-steering-wheel"></i>{car.transmision}</li>
-        </ul>
-      </div>
+      {/* Bidding Interface - Only show if user is logged in */}
+      {user && (
+        <div className="car-single-bidding mb-4">
+          <BiddingInterface car={car} isActive={isActive} />
+        </div>
+      )}
       
-      <div className="car-single-terms mb-3">
-        <h5 className="mb-2">{data.labels.auctionTerms}</h5>
-        <ul className="car-single-terms-list">
-          <li>{data.labels.seller}: <span>{car.vendedor}</span></li>
-          <li>{data.labels.transferFee}: <span>{helpers.formatPrice(car.comisionTransferencia)}</span></li>
-          <li>{data.labels.dispositionFee}: <span>{helpers.formatPrice(car.comisionDisposicion)}</span></li>
-        </ul>
-      </div>
+      {/* Show login message if user is not logged in */}
+      {!user && (
+        <div className="car-single-auth-message mb-4">
+          <div className="alert alert-info">
+            <i className="fas fa-info-circle me-2"></i>
+            <strong>Inicia sesión para participar en la subasta</strong>
+            <br />
+            <small>Para realizar ofertas y ver el historial de pujas completo, debes iniciar sesión.</small>
+          </div>
+        </div>
+      )}
+
       
       <div className="car-single-share">
         <h5 className="mb-3">{data.labels.shareAuction}</h5>

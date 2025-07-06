@@ -1,9 +1,10 @@
 export const carTabsConfig = {
   data: {
     tabs: {
-      description: 'Descripción',
-      additionalInfo: 'Información Adicional',
-      bidHistory: 'Historial de Pujas'
+      details: 'Detalles del vehículo',
+      additionalInfo: 'Información adicional',
+      bidHistory: 'Historial de pujas',
+      comments: 'Comentarios'
     },
     labels: {
       bidAmount: 'Monto de Puja',
@@ -17,8 +18,34 @@ export const carTabsConfig = {
       comment: 'Comentario (opcional)'
     },
     content: {
-      descriptionText: 'Este vehículo cuenta con todas las características necesarias para brindar una experiencia de manejo excepcional. Ha sido cuidadosamente mantenido y se encuentra en perfectas condiciones para su próximo propietario.',
-      additionalInfoText: 'Información técnica adicional sobre el vehículo, incluyendo especificaciones detalladas, historia de mantenimiento y características especiales que lo hacen único en el mercado.',
+      comments: [
+        {
+          author: 'Roberto Silva',
+          date: '2024-01-15 12:00',
+          comment: '¿El vehículo ha tenido algún accidente?',
+          avatar: '/assets/img/user/01.jpg'
+        },
+        {
+          author: 'Vendedor',
+          date: '2024-01-15 12:30',
+          comment: 'No, el vehículo nunca ha tenido accidentes. Todos los documentos están en orden.',
+          avatar: '/assets/img/team/01.jpg',
+          isVendor: true
+        },
+        {
+          author: 'Patricia Morales',
+          date: '2024-01-15 13:15',
+          comment: '¿Cuántos dueños ha tenido?',
+          avatar: '/assets/img/user/01.jpg'
+        },
+        {
+          author: 'Vendedor', 
+          date: '2024-01-15 13:45',
+          comment: 'Ha tenido solo un dueño anterior. Se ha mantenido en excelentes condiciones.',
+          avatar: '/assets/img/team/01.jpg',
+          isVendor: true
+        }
+      ],
       bidHistory: [
         {
           bidder: 'Juan Pérez',

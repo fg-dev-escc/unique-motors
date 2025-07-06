@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import { startGetFeaturedCars, startSearchCars } from '../../../redux/features/home/thunks';
 import { setSearchQuery, setSortBy } from '../../../redux/features/home/homeSlice';
+import { AuctionTimer } from '../../../components/ui/AuctionTimer';
 
 import { carConfig } from './carConfig';
 
@@ -122,7 +123,11 @@ const CarArea = ({ scope = 'main' }) => {
           {featuredCars && featuredCars.length > 0 ? (
             featuredCars.map((car) => (
               <div key={car.torreID || car.id} className="col-lg-6 col-xl-4">
-                <div className="car-item">
+                <div className="car-item position-relative">
+                  {/* Timer badge */}
+                  {car.fechaVencimiento && (
+                    <AuctionTimer endDate={car.fechaVencimiento} />
+                  )}
                   <div className="car-img">
                     <img 
                       src={helpers.getCarImage(car)} 

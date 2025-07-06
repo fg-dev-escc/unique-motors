@@ -1,5 +1,6 @@
 import axios from "axios";
 import { isTokenExpired, removeTokenFromStorage } from "../utils/jwtHelper";
+import { API_ENDPOINTS } from '../const/url';
 
 export async function fetch(method, url, body) {
   const token = localStorage.getItem("token");
@@ -110,4 +111,12 @@ export async function getFile(url, name) {
     if (e.response) return { ok: false, response: e.response };
     else return { ok: false };
   }
+}
+
+export async function getCarDetail(id) {
+  // Usa el endpoint correcto como en unique-anterior
+  const { _URL_DEV } = await import('../const/url');
+  const result = await fetch("get", `${_URL_DEV}/Subasta/GetTorre/${id}`);
+  if (result.ok) return result.data;
+  throw new Error(result.response?.data?.message || "Error al obtener detalle");
 }
