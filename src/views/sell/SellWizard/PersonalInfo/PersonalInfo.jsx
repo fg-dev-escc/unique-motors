@@ -6,7 +6,6 @@ const PersonalInfo = ({ formData, updateFormData }) => {
   // config
   const { data } = personalInfoConfig;
 
-  // render
   return (
     <div className="row">
       <div className="col-md-12 mb-4">

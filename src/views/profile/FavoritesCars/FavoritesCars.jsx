@@ -56,7 +56,6 @@ const FavoritesCars = () => {
     return `$${price.toLocaleString()}`;
   };
 
-  // render
   return (
     <ProfileLayout title="Favorite">
       <div className="user-profile-card">

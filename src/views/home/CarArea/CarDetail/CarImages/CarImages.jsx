@@ -1,7 +1,6 @@
 import React from 'react';
 
 const CarImages = ({ car }) => {
-  // render
   return (
     <div className="car-single-slider-box">
       <div className="car-single-slider owl-carousel owl-theme">

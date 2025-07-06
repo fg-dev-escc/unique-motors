@@ -46,7 +46,6 @@ const ContactForm = () => {
     }
   };
 
-  // render
   return (
     <div className="contact-wrapper">
       <div className="container">

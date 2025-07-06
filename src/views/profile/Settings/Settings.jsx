@@ -163,7 +163,6 @@ const Settings = () => {
     }
   };
 
-  // render
   return (
     <ProfileLayout title="Settings">
       {/* Update Profile Form */}

@@ -41,7 +41,6 @@ const Listings = () => {
     }
   };
 
-  // render
   return (
     <ProfileLayout title="My Car Listing">
       <div className="user-profile-card">

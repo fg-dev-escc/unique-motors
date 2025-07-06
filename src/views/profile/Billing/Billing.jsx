@@ -97,7 +97,6 @@ const Billing = () => {
     }
   };
 
-  // render
   return (
     <ProfileLayout title="Billing Info">
       <div className="user-profile-card">

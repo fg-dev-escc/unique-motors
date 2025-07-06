@@ -1,10 +1,10 @@
 import React from 'react';
 
-import { heroConfig } from './heroConfig';
+import { heroData, heroStyles } from './heroConfig';
 
 const HeroSection = () => {
-
-  const { data, styles } = heroConfig;
+  const data = heroData;
+  const styles = heroStyles;
 
   return (
     <div className="hero-section">

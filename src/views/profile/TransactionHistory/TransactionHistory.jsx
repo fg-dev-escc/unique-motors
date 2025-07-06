@@ -51,7 +51,6 @@ const TransactionHistory = () => {
     console.log('View transaction:', transactionId);
   };
 
-  // render
   return (
     <ProfileLayout title="Transaction">
       <div className="user-profile-card">

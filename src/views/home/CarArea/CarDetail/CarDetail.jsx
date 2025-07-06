@@ -82,7 +82,6 @@ const CarDetail = () => {
   const detallesVehiculo = car && car.valores ? car.valores.filter(spec => detallesVehiculoCampos.includes(spec.campo)) : [];
   const infoAdicional = car && car.valores ? car.valores.filter(spec => !detallesVehiculoCampos.includes(spec.campo)) : [];
 
-  // render
   return (
     <>
       <Breadcrumb 

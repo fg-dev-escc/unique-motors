@@ -63,7 +63,6 @@ const CarArea = ({ scope = 'main' }) => {
   if (loading) return <div className="text-center py-5">{data.messages.loading}</div>;
   if (error) return <div className="text-center py-5 text-danger">{error}</div>;
 
-  // render
   return (
     <div className="car-area bg py-120" style={styles.sectionContainer}>
       <div className="container">

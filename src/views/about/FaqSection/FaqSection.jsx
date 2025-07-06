@@ -3,10 +3,8 @@ import React from 'react';
 import { faqConfig } from './faqConfig';
 
 const FaqSection = () => {
-  // config
   const { data } = faqConfig;
 
-  // render
   return (
     <div className="faq-area py-120">
       <div className="container">

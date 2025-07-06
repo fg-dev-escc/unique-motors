@@ -76,7 +76,6 @@ const SellWizard = () => {
     });
   };
 
-  // render
   if (showConfirmation) {
     return (
       <SellConfirmation 

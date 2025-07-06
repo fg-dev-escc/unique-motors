@@ -11,7 +11,6 @@ const SellConfirmation = ({ formData, onNewSubmission }) => {
     window.print();
   };
 
-  // render
   return (
     <div className="booking-confirm py-120">
       <div className="container">

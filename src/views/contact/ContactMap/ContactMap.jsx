@@ -3,10 +3,9 @@ import React from 'react';
 import { contactMapConfig } from './contactMapConfig';
 
 const ContactMap = () => {
-  // config
+
   const { data } = contactMapConfig;
 
-  // render
   return (
     <div className="contact-map">
       <iframe 

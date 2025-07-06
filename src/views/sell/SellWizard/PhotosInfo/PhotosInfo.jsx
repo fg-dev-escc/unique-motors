@@ -19,7 +19,6 @@ const PhotosInfo = ({ formData, updateFormData }) => {
     updateFormData('images', newImages);
   };
 
-  // render
   return (
     <div className="row">
       <div className="col-md-12 mb-4">

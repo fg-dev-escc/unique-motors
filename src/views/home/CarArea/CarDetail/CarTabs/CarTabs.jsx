@@ -6,7 +6,6 @@ const CarTabs = ({ activeTab, setActiveTab, car, isActive }) => {
   // config
   const { data, helpers } = carTabsConfig;
 
-  // render
   return (
     <div className="car-single-details pt-50">
       <nav>

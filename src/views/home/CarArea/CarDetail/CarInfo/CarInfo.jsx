@@ -11,7 +11,6 @@ const CarInfo = ({ car, timeLeft, isActive, helpers }) => {
   // redux state
   const { user } = useSelector(state => state.userReducer);
 
-  // render
   return (
     <div className="car-single-info">
       <h3 className="car-single-title">{car.nombre}</h3>

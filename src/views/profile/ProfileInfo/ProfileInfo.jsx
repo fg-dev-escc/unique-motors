@@ -7,7 +7,6 @@ import ProfileLayout from '../ProfileLayout';
 const ProfileInfo = () => {
   const { user } = useSelector(state => state.userReducer);
 
-  // render
   return (
     <ProfileLayout title="My Profile">
       <div className="user-profile-card">

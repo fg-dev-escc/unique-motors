@@ -6,7 +6,6 @@ const RelatedCars = ({ helpers }) => {
   // config
   const { data } = relatedCarsConfig;
 
-  // render
   return (
     <div className="car-related-item pt-80">
       <div className="car-related-item-heading">

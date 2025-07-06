@@ -6,7 +6,6 @@ const HeroSection = () => {
   // config
   const { data } = heroConfig;
 
-  // render
   return (
     <div className="site-breadcrumb" style={{ background: `url(${data.backgroundImage})` }}>
       <div className="container">

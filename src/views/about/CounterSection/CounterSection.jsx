@@ -3,10 +3,9 @@ import React from 'react';
 import { counterConfig } from './counterConfig';
 
 const CounterSection = () => {
-  // config
+
   const { data } = counterConfig;
 
-  // render
   return (
     <div className="counter-area pt-30 pb-30">
       <div className="container">

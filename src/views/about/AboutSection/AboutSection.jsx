@@ -3,10 +3,9 @@ import React from 'react';
 import { aboutSectionConfig } from './aboutSectionConfig';
 
 const AboutSection = () => {
-  // config
+
   const { data } = aboutSectionConfig;
 
-  // render
   return (
     <div className="about-area py-120 mb-50">
       <div className="container">

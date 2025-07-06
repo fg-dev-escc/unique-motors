@@ -8,7 +8,6 @@ import FaqSection from './FaqSection/FaqSection';
 import PartnerSection from './PartnerSection/PartnerSection';
 
 const About = () => {
-  // render
   return (
     <main className="main">
       {/* <HeroSection /> */}
