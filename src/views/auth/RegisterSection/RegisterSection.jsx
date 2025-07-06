@@ -1,23 +1,25 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-
 import { useDispatch, useSelector } from 'react-redux';
 
-import { startLogin } from '../../../../redux/features/auth/thunks';
-import { consLogged } from '../../../../const/consLogged';
-import Breadcrumb from '../../../../components/ui/Breadcrumb';
+import { startRegistro } from '../../../redux/features/auth/thunks';
+import { consLogged } from '../../../const/consLogged';
+import Breadcrumb from '../../../components/ui/Breadcrumb';
+import { authConfig } from '../authConfig';
 
-const Login = () => {
+const RegisterSection = () => {
   const [formData, setFormData] = useState({
+    nombre: '',
     email: '',
     password: ''
   });
   const [errors, setErrors] = useState({});
-  const [rememberMe, setRememberMe] = useState(false);
+  const [agreeTerms, setAgreeTerms] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  
-  const { loginErr, loadingLogin, logged } = useSelector(state => state.userReducer);
+
+  const { loadingLogin, logged } = useSelector(state => state.userReducer);
+  const { data } = authConfig;
   
   // Redirect to home if already logged in
   React.useEffect(() => {
@@ -44,6 +46,12 @@ const Login = () => {
   const validateForm = () => {
     const newErrors = {};
     
+    if (!formData.nombre) {
+      newErrors.nombre = 'El nombre es requerido';
+    } else if (formData.nombre.length < 2) {
+      newErrors.nombre = 'El nombre debe tener al menos 2 caracteres';
+    }
+    
     if (!formData.email) {
       newErrors.email = 'El email es requerido';
     } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
@@ -56,6 +64,10 @@ const Login = () => {
       newErrors.password = 'La contraseña debe tener al menos 6 caracteres';
     }
     
+    if (!agreeTerms) {
+      newErrors.terms = 'Debes aceptar los términos de servicio';
+    }
+    
     return newErrors;
   };
 
@@ -64,7 +76,7 @@ const Login = () => {
     const newErrors = validateForm();
     
     if (Object.keys(newErrors).length === 0) {
-      dispatch(startLogin(formData));
+      dispatch(startRegistro(formData));
     } else {
       setErrors(newErrors);
     }
@@ -73,11 +85,8 @@ const Login = () => {
   return (
     <>
       <Breadcrumb 
-        title="Login"
-        items={[
-          { label: 'Home', path: '/' },
-          { label: 'Login', path: '/login', active: true }
-        ]}
+        title="Crear Cuenta"
+        currentPage="Crear Cuenta"
       />
       
       <div className="login-area py-120">
@@ -86,19 +95,35 @@ const Login = () => {
             <div className="login-form">
               <div className="login-header">
                 <img src="/assets/img/logo/logo.png" alt="" />
-                <p>Login with your carway account</p>
+                <p>Crea tu cuenta en Unique Motors</p>
               </div>
               
               <form onSubmit={handleSubmit}>
                 <div className="form-group">
-                  <label>Email Address</label>
+                  <label>Nombre Completo</label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    name="nombre"
+                    value={formData.nombre}
+                    onChange={handleInputChange}
+                    placeholder="Tu nombre completo"
+                    disabled={loadingLogin}
+                  />
+                  {errors.nombre && (
+                    <small className="text-danger">{errors.nombre}</small>
+                  )}
+                </div>
+                
+                <div className="form-group">
+                  <label>Correo Electrónico</label>
                   <input
                     type="email"
                     className="form-control"
                     name="email"
                     value={formData.email}
                     onChange={handleInputChange}
-                    placeholder="Your Email"
+                    placeholder="Tu correo electrónico"
                     disabled={loadingLogin}
                   />
                   {errors.email && (
@@ -107,14 +132,14 @@ const Login = () => {
                 </div>
                 
                 <div className="form-group">
-                  <label>Password</label>
+                  <label>Contraseña</label>
                   <input
                     type="password"
                     className="form-control"
                     name="password"
                     value={formData.password}
                     onChange={handleInputChange}
-                    placeholder="Your Password"
+                    placeholder="Tu contraseña"
                     disabled={loadingLogin}
                   />
                   {errors.password && (
@@ -122,28 +147,21 @@ const Login = () => {
                   )}
                 </div>
                 
-                {loginErr && (
-                  <div className="alert alert-danger mb-3">
-                    <i className="far fa-exclamation-triangle me-2"></i>
-                    {loginErr}
-                  </div>
-                )}
-                
-                <div className="d-flex justify-content-between mb-4">
-                  <div className="form-check">
-                    <input 
-                      className="form-check-input" 
-                      type="checkbox" 
-                      checked={rememberMe}
-                      onChange={(e) => setRememberMe(e.target.checked)}
-                      id="remember"
-                      disabled={loadingLogin}
-                    />
-                    <label className="form-check-label" htmlFor="remember">
-                      Remember Me
-                    </label>
-                  </div>
-                  <Link to="/forgot-password" className="forgot-pass">Forgot Password?</Link>
+                <div className="form-check form-group">
+                  <input 
+                    className="form-check-input" 
+                    type="checkbox" 
+                    checked={agreeTerms}
+                    onChange={(e) => setAgreeTerms(e.target.checked)}
+                    id="agree"
+                    disabled={loadingLogin}
+                  />
+                  <label className="form-check-label" htmlFor="agree">
+                    Acepto los <Link to="/terms">Términos de Servicio</Link>
+                  </label>
+                  {errors.terms && (
+                    <small className="text-danger d-block">{errors.terms}</small>
+                  )}
                 </div>
                 
                 <div className="d-flex align-items-center">
@@ -154,11 +172,11 @@ const Login = () => {
                   >
                     {loadingLogin ? (
                       <>
-                        <i className="far fa-spinner fa-spin"></i> Signing in...
+                        <i className="far fa-spinner fa-spin"></i> Creating account...
                       </>
                     ) : (
                       <>
-                        <i className="far fa-sign-in"></i> Login
+                        <i className="far fa-paper-plane"></i> Crear Cuenta
                       </>
                     )}
                   </button>
@@ -166,9 +184,9 @@ const Login = () => {
               </form>
               
               <div className="login-footer">
-                <p>Don't have an account? <Link to="/register">Register.</Link></p>
+                <p>¿Ya tienes cuenta? <Link to="/login">Iniciar sesión</Link></p>
                 <div className="social-login">
-                  <p>Continue with social media</p>
+                  <p>Registrarse con redes sociales</p>
                   <div className="social-login-list">
                     <a href="#"><i className="fab fa-facebook-f"></i></a>
                     <a href="#"><i className="fab fa-google"></i></a>
@@ -184,4 +202,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default RegisterSection;

@@ -1,4 +1,4 @@
-export const carDetailConfig = {
+export const detailConfig = {
   // data
   data: {
     breadcrumb: {
@@ -138,10 +138,10 @@ export const carDetailConfig = {
     },
 
     validateBid: (bidAmount, currentPrice) => {
-      const minBid = carDetailConfig.helpers.calculateMinimumBid(currentPrice);
+      const minBid = detailConfig.helpers.calculateMinimumBid(currentPrice);
       return {
         isValid: bidAmount >= minBid,
-        message: bidAmount < minBid ? `La puja mínima es ${carDetailConfig.helpers.formatPrice(minBid)}` : ''
+        message: bidAmount < minBid ? `La puja mínima es ${detailConfig.helpers.formatPrice(minBid)}` : ''
       };
     }
   }

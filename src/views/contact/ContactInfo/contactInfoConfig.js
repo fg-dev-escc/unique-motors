@@ -4,23 +4,23 @@ export const contactInfoConfig = {
     contactInfo: [
       {
         icon: "fal fa-map-marker-alt",
-        title: "Office Address",
-        content: "25/B Milford, New York, USA"
+        title: "Dirección de Oficina",
+        content: "Av. Revolución 1234, Col. Centro, Ciudad de México"
       },
       {
         icon: "fal fa-phone",
-        title: "Call Us",
-        content: "+2 123 4565 789"
+        title: "Llámanos",
+        content: "+52 55 1234 5678"
       },
       {
         icon: "fal fa-envelope",
-        title: "Email Us",
-        content: "info@example.com"
+        title: "Escríbenos",
+        content: "contacto@uniquemotors.mx"
       },
       {
         icon: "fal fa-clock",
-        title: "Open Time",
-        content: "Mon - Sat (10.00AM - 05.30PM)"
+        title: "Horario de Atención",
+        content: "Lun - Vie (9:00AM - 6:00PM)"
       }
     ]
   }

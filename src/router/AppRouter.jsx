@@ -7,9 +7,9 @@ import Home from "../views/home/Home";
 import About from "../views/about/About";
 import Contact from "../views/contact/Contact";
 import Sell from "../views/sell/Sell";
-import CarDetail from "../views/home/CarArea/CarDetail/CarDetail";
-import Login from "../views/profile/Auth/Login/Login";
-import Register from "../views/profile/Auth/Register/Register";
+import Detail from "../views/detail/Detail";
+import LoginSection from "../views/auth/LoginSection/LoginSection";
+import RegisterSection from "../views/auth/RegisterSection/RegisterSection";
 import Profile from "../views/profile/Profile";
 import ProfileSettings from "../views/profile/ProfileSettings";
 import BillingInfo from "../views/profile/BillingInfo";
@@ -64,12 +64,12 @@ export const AppRouter = () => {
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/vender" element={<Sell />} />
-        <Route path="/subasta/:id" element={<CarDetail />} />
+        <Route path="/subasta/:id" element={<Detail />} />
         <Route 
           path="/login" 
           element={
             <PublicRoute>
-              <Login />
+              <LoginSection />
             </PublicRoute>
           } 
         />
@@ -77,7 +77,7 @@ export const AppRouter = () => {
           path="/register" 
           element={
             <PublicRoute>
-              <Register />
+              <RegisterSection />
             </PublicRoute>
           } 
         />

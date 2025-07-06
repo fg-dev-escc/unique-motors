@@ -84,13 +84,13 @@ const Header = () => {
                         <li><Link className="dropdown-item" to="/profile"><i className="far fa-user"></i> My Profile</Link></li>
                         <li><Link className="dropdown-item" to="/billing"><i className="far fa-clipboard-list"></i> Billing Info</Link></li>
                         <li><Link className="dropdown-item" to="/settings"><i className="far fa-cog"></i> Settings</Link></li>
-                        <li><button className="dropdown-item" onClick={handleLogout}><i className="far fa-sign-out"></i> Log Out</button></li>
+                        <li><a className="dropdown-item" href="#" onClick={handleLogout}><i className="far fa-sign-out"></i> Cerrar Sesión</a></li>
                       </>
                     ) : (
                       <>
                         <li><Link className="dropdown-item" to="/login"><i className="far fa-sign-in"></i> Iniciar Sesión</Link></li>
-                        <li><Link className="dropdown-item" to="/register"><i className="far fa-user-plus"></i> Registro</Link></li>
-                        <li><Link className="dropdown-item" to="/about"><i className="far fa-info-circle"></i> Acerca de</Link></li>
+                        <li><Link className="dropdown-item" to="/register"><i className="far fa-user-plus"></i> Crear Cuenta</Link></li>
+                        <li><Link className="dropdown-item" to="/about"><i className="far fa-info-circle"></i> Nosotros</Link></li>
                         <li><Link className="dropdown-item" to="/contact"><i className="far fa-envelope"></i> Contacto</Link></li>
                       </>
                     )}
@@ -138,12 +138,12 @@ const Header = () => {
                     <img src="/assets/img/icon/phone.svg" alt="" />
                   </div>
                   <div className="header-phone-content">
-                    <span>Need Car Rent ?</span>
+                    <span>¿Necesitas Subastar tu Auto?</span>
                     <h5 className="header-phone-number"><a href="tel:+2123654789">+2 123 654 789</a></h5>
                   </div>
                 </div>
                 <div className="header-btn mt-2">
-                  <a href="/#cars" className="theme-btn">Explorar Autos</a>
+                  <a href="/#cars" className="theme-btn">Ver Subastas</a>
                 </div>
                 <div className="header-account">
                   <div className="dropdown">
@@ -153,10 +153,11 @@ const Header = () => {
                     <ul className="dropdown-menu dropdown-menu-end">
                       {isLoggedIn ? (
                         <>
-                          <li><Link className="dropdown-item" to="/profile"><i className="far fa-user"></i> My Profile</Link></li>
-                          <li><Link className="dropdown-item" to="/billing"><i className="far fa-clipboard-list"></i> Billing Info</Link></li>
-                          <li><Link className="dropdown-item" to="/settings"><i className="far fa-cog"></i> Settings</Link></li>
-                          <li><button className="dropdown-item" onClick={handleLogout}><i className="far fa-sign-out"></i> Log Out</button></li>
+                          <li><Link className="dropdown-item" to="/profile"><i className="far fa-user"></i> Mi Perfil</Link></li>
+                          <li><Link className="dropdown-item" to="/profile/listings"><i className="far fa-car"></i> Mis Subastas</Link></li>
+                          <li><Link className="dropdown-item" to="/profile/transactions"><i className="far fa-repeat"></i> Transacciones</Link></li>
+                          <li><Link className="dropdown-item" to="/profile/settings"><i className="far fa-cog"></i> Configuración</Link></li>
+                          <li><a className="dropdown-item" href="#" onClick={handleLogout}><i className="far fa-sign-out"></i> Cerrar Sesión</a></li>
                         </>
                       ) : (
                         <>
