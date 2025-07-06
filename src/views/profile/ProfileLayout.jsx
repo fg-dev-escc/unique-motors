@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import Breadcrumb from '../../components/ui/Breadcrumb';
-import ProfileSidebar from './components/ProfileSidebar';
+import ProfileSidebar from './ProfileSidebar';
 
 const ProfileLayout = ({ children, title = "My Profile" }) => {
   const { user } = useSelector(state => state.userReducer);

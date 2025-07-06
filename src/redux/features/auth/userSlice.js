@@ -4,7 +4,7 @@ import { consLogged } from "../../../const/consLogged";
 export const userSlice = createSlice({
   name: "auth",
   initialState: {
-    logged: consLogged.STARTING,
+    logged: consLogged.NOTLOGGED, // Cambiado de STARTING a NOTLOGGED
     loginErr: null,
     loadingLogin: false,
     user: {
@@ -19,8 +19,8 @@ export const userSlice = createSlice({
       state.loginErr = action.payload;
       state.loadingLogin = false;
     },
-    setLoadingLogin: (state) => {
-      state.loadingLogin = true;
+    setLoadingLogin: (state, action) => {
+      state.loadingLogin = action.payload !== undefined ? action.payload : true;
     },
     setLogged: (state, { payload }) => {
       state.logged = payload;
@@ -31,8 +31,10 @@ export const userSlice = createSlice({
       state.logged = consLogged.LOGGED;
     },
     logOut: (state) => {
-      localStorage.removeItem("token");
+      state.user = null;
       state.logged = consLogged.NOTLOGGED;
+      state.loginErr = null;
+      state.loadingLogin = false;
     },
     setResponseReg:(state,{payload})=>{
       state.responseReg = payload;
@@ -48,3 +50,5 @@ export const {
   logOut,
   setResponseReg
 } = userSlice.actions;
+
+export default userSlice.reducer;

@@ -1,7 +1,15 @@
 import axios from "axios";
+import { isTokenExpired, removeTokenFromStorage } from "../utils/jwtHelper";
 
 export async function fetch(method, url, body) {
   const token = localStorage.getItem("token");
+  
+  // Check if token is expired
+  if (token && isTokenExpired(token)) {
+    removeTokenFromStorage();
+    window.location.href = '/login';
+    return { ok: false, error: 'Token expired' };
+  }
   
   try {
     const config = {
@@ -17,6 +25,11 @@ export async function fetch(method, url, body) {
     const { data } = await axios(config);
     return { ok: true, data };
   } catch (e) {
+    // Handle 401 Unauthorized responses
+    if (e.response?.status === 401) {
+      removeTokenFromStorage();
+      window.location.href = '/login';
+    }
     console.log(e);
     return { ok: false, response: e.response };
   }
