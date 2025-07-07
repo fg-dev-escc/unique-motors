@@ -1,6 +1,30 @@
 import React, { useState } from 'react';
 
-import { contactFormConfig } from './contactFormConfig';
+// data
+const contactData = {
+  form: {
+    title: "Contáctanos",
+    description: "¿Tienes alguna pregunta sobre nuestras subastas de vehículos? Estamos aquí para ayudarte. Envíanos un mensaje y nos pondremos en contacto contigo lo antes posible.",
+    placeholders: {
+      name: "Tu Nombre",
+      email: "Tu Correo Electrónico",
+      subject: "Asunto",
+      message: "Escribe tu mensaje"
+    },
+    buttons: {
+      submit: "Enviar Mensaje",
+      submitting: "Enviando..."
+    }
+  },
+  messages: {
+    success: "¡Gracias! Tu mensaje ha sido enviado exitosamente.",
+    error: "Lo sentimos, hubo un error al enviar tu mensaje. Por favor intenta de nuevo."
+  },
+  image: {
+    src: "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+    alt: "Contacto"
+  }
+};
 
 const ContactForm = () => {
   // state
@@ -12,8 +36,6 @@ const ContactForm = () => {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitMessage, setSubmitMessage] = useState('');
-
-  const { data } = contactFormConfig;
 
   // handlers
   const handleInputChange = (e) => {
@@ -32,7 +54,7 @@ const ContactForm = () => {
     try {
       await new Promise(resolve => setTimeout(resolve, 1000));
       
-      setSubmitMessage(data.messages.success);
+      setSubmitMessage(contactData.messages.success);
       setFormData({
         name: '',
         email: '',
@@ -40,27 +62,28 @@ const ContactForm = () => {
         message: ''
       });
     } catch (error) {
-      setSubmitMessage(data.messages.error);
+      setSubmitMessage(contactData.messages.error);
     } finally {
       setIsSubmitting(false);
     }
   };
 
+  // render
   return (
     <div className="contact-wrapper">
       <div className="container">
         <div className="row">
           <div className="col-lg-6 align-self-center">
             <div className="contact-img">
-              <img src={data.image.src} alt={data.image.alt} />
+              <img src={contactData.image.src} alt={contactData.image.alt} />
             </div>
           </div>
           <div className="col-lg-6 align-self-center">
             <div className="contact-form">
               <div className="contact-form-header">
-                <h2>{data.form.title}</h2>
+                <h2>{contactData.form.title}</h2>
                 <p>
-                  {data.form.description}
+                  {contactData.form.description}
                 </p>
               </div>
               <form onSubmit={handleSubmit}>
@@ -71,7 +94,7 @@ const ContactForm = () => {
                         type="text" 
                         className="form-control" 
                         name="name"
-                        placeholder={data.form.placeholders.name}
+                        placeholder={contactData.form.placeholders.name}
                         value={formData.name}
                         onChange={handleInputChange}
                         required 
@@ -84,7 +107,7 @@ const ContactForm = () => {
                         type="email" 
                         className="form-control" 
                         name="email"
-                        placeholder={data.form.placeholders.email} 
+                        placeholder={contactData.form.placeholders.email} 
                         value={formData.email}
                         onChange={handleInputChange}
                         required 
@@ -97,7 +120,7 @@ const ContactForm = () => {
                     type="text" 
                     className="form-control" 
                     name="subject"
-                    placeholder={data.form.placeholders.subject} 
+                    placeholder={contactData.form.placeholders.subject} 
                     value={formData.subject}
                     onChange={handleInputChange}
                     required 
@@ -109,7 +132,7 @@ const ContactForm = () => {
                     cols="30" 
                     rows="5" 
                     className="form-control"
-                    placeholder={data.form.placeholders.message}
+                    placeholder={contactData.form.placeholders.message}
                     value={formData.message}
                     onChange={handleInputChange}
                     required
@@ -120,7 +143,7 @@ const ContactForm = () => {
                   className="theme-btn"
                   disabled={isSubmitting}
                 >
-                  {isSubmitting ? data.form.buttons.submitting : data.form.buttons.submit} 
+                  {isSubmitting ? contactData.form.buttons.submitting : contactData.form.buttons.submit} 
                   <i className="far fa-paper-plane"></i>
                 </button>
                 <div className="col-md-12 mt-3">

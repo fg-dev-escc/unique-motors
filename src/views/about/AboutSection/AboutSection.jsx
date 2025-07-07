@@ -1,11 +1,40 @@
 import React from 'react';
 
-import { aboutSectionConfig } from './aboutSectionConfig';
+// data
+const aboutData = {
+  images: {
+    main: "assets/img/about/01.jpg",
+    mainAlt: "Unique Motors - Plataforma de Subastas",
+    shape: "assets/img/shape/02.png",
+    shapeAlt: "Shape"
+  },
+  experience: {
+    icon: "assets/img/icon/car-rent.svg",
+    iconAlt: "Subastas de Vehículos",
+    text: "5+ Años de <br /> Experiencia en Subastas"
+  },
+  content: {
+    tagline: "Acerca de Nosotros",
+    title: {
+      before: "La Plataforma Líder en",
+      highlight: "Subastas de Vehículos",
+      after: ""
+    },
+    description: "Unique Motors es la plataforma de subastas de vehículos más confiable y transparente del mercado. Utilizamos un innovador sistema de tokens que te permite participar en subastas de manera segura y acceder a los mejores vehículos del país.",
+    features: [
+      "Sistema de tokens seguro y transparente",
+      "Verificación completa de todos los vehículos",
+      "Proceso de subasta justo y confiable"
+    ],
+    button: {
+      text: "Conoce Más",
+      link: "#servicios"
+    }
+  }
+};
 
 const AboutSection = () => {
-
-  const { data } = aboutSectionConfig;
-
+  // render
   return (
     <div className="about-area py-120 mb-50">
       <div className="container">
@@ -15,18 +44,18 @@ const AboutSection = () => {
               <div className="about-img">
                 <img 
                   className="about-img-1" 
-                  src={data.images.main} 
-                  alt={data.images.mainAlt}
+                  src={aboutData.images.main} 
+                  alt={aboutData.images.mainAlt}
                 />
               </div>
               <div className="about-shape">
-                <img src={data.images.shape} alt={data.images.shapeAlt} />
+                <img src={aboutData.images.shape} alt={aboutData.images.shapeAlt} />
               </div>
               <div className="about-experience">
                 <div className="about-experience-icon">
-                  <img src={data.experience.icon} alt={data.experience.iconAlt} />
+                  <img src={aboutData.experience.icon} alt={aboutData.experience.iconAlt} />
                 </div>
-                <b dangerouslySetInnerHTML={{ __html: data.experience.text }} />
+                <b dangerouslySetInnerHTML={{ __html: aboutData.experience.text }} />
               </div>
             </div>
           </div>
@@ -34,26 +63,26 @@ const AboutSection = () => {
             <div className="about-right">
               <div className="site-heading mb-3">
                 <span className="site-title-tagline">
-                  {data.content.tagline}
+                  {aboutData.content.tagline}
                 </span>
                 <h2 className="site-title">
-                  {data.content.title.before} <span>{data.content.title.highlight}</span> {data.content.title.after}
+                  {aboutData.content.title.before} <span>{aboutData.content.title.highlight}</span> {aboutData.content.title.after}
                 </h2>
               </div>
               <p className="about-text">
-                {data.content.description}
+                {aboutData.content.description}
               </p>
               <div className="about-list-wrapper">
                 <ul className="about-list list-unstyled">
-                  {data.content.features.map((feature, index) => (
+                  {aboutData.content.features.map((feature, index) => (
                     <li key={index}>
                       {feature}
                     </li>
                   ))}
                 </ul>
               </div>
-              <a href={data.content.button.link} className="theme-btn mt-4">
-                {data.content.button.text} <i className="far fa-arrow-right"></i>
+              <a href={aboutData.content.button.link} className="theme-btn mt-4">
+                {aboutData.content.button.text} <i className="far fa-arrow-right"></i>
               </a>
             </div>
           </div>

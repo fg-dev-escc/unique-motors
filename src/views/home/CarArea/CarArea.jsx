@@ -1,12 +1,124 @@
 import React, { useEffect, useState } from 'react';
-
 import { useSelector, useDispatch } from 'react-redux';
-
 import { startGetFeaturedCars, startSearchCars } from '../../../redux/features/home/thunks';
 import { setSearchQuery, setSortBy } from '../../../redux/features/home/homeSlice';
 import { AuctionTimer } from '../../../components/ui/AuctionTimer';
 
-import { carConfig } from './carConfig';
+// data
+const carData = {
+  sectionTitle: {
+    tagline: "Cars",
+    title: "Featured",
+    titleSpan: "Cars"
+  },
+  searchPlaceholder: "Search",
+  sortOptions: [
+    { value: "1", label: "Sort By Default" },
+    { value: "5", label: "Sort By Featured" },
+    { value: "2", label: "Sort By Latest" },
+    { value: "3", label: "Sort By Low Price" },
+    { value: "4", label: "Sort By High Price" }
+  ],
+  labels: {
+    model: "Model",
+    people: "People",
+    perMonth: "/ month",
+    loadMore: "Load More",
+    rentNow: "Ver Subasta"
+  },
+  messages: {
+    loading: "Loading cars...",
+    noResults: "No cars found."
+  },
+  defaults: {
+    image: '/assets/img/car/01.jpg',
+    capacity: '4',
+    fuel: 'Hybrid',
+    efficiency: '10.15km / 1-litre',
+    transmission: 'Automatic',
+    price: '$390',
+    rating: '5.0'
+  }
+};
+
+// styles
+const carStyles = {
+  sectionContainer: {
+    padding: '120px 0'
+  },
+  sortContainer: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    gap: '20px',
+    marginBottom: '30px'
+  },
+  searchInput: {
+    padding: '12px 45px 12px 15px',
+    border: '1px solid #ddd',
+    borderRadius: '8px',
+    fontSize: '14px',
+    width: '250px'
+  },
+  searchButton: {
+    position: 'absolute',
+    right: '15px',
+    top: '50%',
+    transform: 'translateY(-50%)',
+    background: 'none',
+    border: 'none',
+    color: '#6c63ff',
+    cursor: 'pointer'
+  },
+  sortSelect: {
+    padding: '12px 15px',
+    border: '1px solid #ddd',
+    borderRadius: '8px',
+    fontSize: '14px',
+    minWidth: '200px'
+  }
+};
+
+// helpers
+const carHelpers = {
+  getCarImage: (car) => {
+    if (car.urlImgPrincipal) return car.urlImgPrincipal;
+    return carData.defaults.image;
+  },
+
+  getTimeLeft: (fechaFin) => {
+    if (!fechaFin) return '';
+    const end = new Date(fechaFin);
+    const now = new Date();
+    let diff = end - now;
+    if (diff <= 0) return 'Subasta terminada';
+    
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    diff -= days * (1000 * 60 * 60 * 24);
+    const hours = Math.floor(diff / (1000 * 60 * 60));
+    diff -= hours * (1000 * 60 * 60);
+    const minutes = Math.floor(diff / (1000 * 60));
+    diff -= minutes * (1000 * 60);
+    const seconds = Math.floor(diff / 1000);
+    
+    const pad = (n) => n.toString().padStart(2, '0');
+    return `${days}d ${pad(hours)}h ${pad(minutes)}m ${pad(seconds)}s`;
+  },
+
+  getStatus: (car) => {
+    if (car.fechaFin) {
+      const end = new Date(car.fechaFin);
+      if (end <= new Date()) return 'Inactivo';
+      return 'Activo';
+    }
+    if (car.activo !== undefined) return car.activo ? 'Activo' : 'Inactivo';
+    return 'Inactivo';
+  },
+
+  formatPrice: (price) => {
+    return price ? `$${Number(price).toLocaleString('en-US')}` : carData.defaults.price;
+  }
+};
 
 const CarArea = ({ scope = 'main' }) => {
   // redux
@@ -21,9 +133,6 @@ const CarArea = ({ scope = 'main' }) => {
   
   // state
   const [, setTick] = useState(0);
-
-  // config
-  const { data, styles, helpers } = carConfig;
 
   // effects
   useEffect(() => {
@@ -60,18 +169,19 @@ const CarArea = ({ scope = 'main' }) => {
     }
   };
 
-  if (loading) return <div className="text-center py-5">{data.messages.loading}</div>;
+  if (loading) return <div className="text-center py-5">{carData.messages.loading}</div>;
   if (error) return <div className="text-center py-5 text-danger">{error}</div>;
 
+  // render
   return (
-    <div className="car-area bg py-120" style={styles.sectionContainer}>
+    <div className="car-area bg py-120" style={carStyles.sectionContainer}>
       <div className="container">
         <div className="row">
           <div className="col-lg-6 mx-auto">
             <div className="site-heading text-center">
-              <span className="site-title-tagline">{data.sectionTitle.tagline}</span>
+              <span className="site-title-tagline">{carData.sectionTitle.tagline}</span>
               <h2 className="site-title">
-                {data.sectionTitle.title} <span>{data.sectionTitle.titleSpan}</span>
+                {carData.sectionTitle.title} <span>{carData.sectionTitle.titleSpan}</span>
               </h2>
               <div className="heading-divider"></div>
             </div>
@@ -80,7 +190,7 @@ const CarArea = ({ scope = 'main' }) => {
         
         {/* search and sort */}
         <div className="col-md-12 mb-4">
-          <div className="car-sort" style={styles.sortContainer}>
+          <div className="car-sort" style={carStyles.sortContainer}>
             <div className="car-widget p-0 m-0">
               <div className="car-search-form">
                 <form onSubmit={handleSearchSubmit}>
@@ -88,12 +198,12 @@ const CarArea = ({ scope = 'main' }) => {
                     <input 
                       type="text" 
                       className="form-control" 
-                      placeholder={data.searchPlaceholder}
+                      placeholder={carData.searchPlaceholder}
                       value={searchQuery} 
                       onChange={e => dispatch(setSearchQuery(e.target.value))} 
-                      style={styles.searchInput}
+                      style={carStyles.searchInput}
                     />
-                    <button type="submit" style={styles.searchButton}>
+                    <button type="submit" style={carStyles.searchButton}>
                       <i className="far fa-search"></i>
                     </button>
                   </div>
@@ -105,9 +215,9 @@ const CarArea = ({ scope = 'main' }) => {
                 className="form-select" 
                 value={sortBy} 
                 onChange={handleSortChange}
-                style={styles.sortSelect}
+                style={carStyles.sortSelect}
               >
-                {data.sortOptions.map(option => (
+                {carData.sortOptions.map(option => (
                   <option key={option.value} value={option.value}>
                     {option.label}
                   </option>
@@ -129,29 +239,29 @@ const CarArea = ({ scope = 'main' }) => {
                   )}
                   <div className="car-img">
                     <img 
-                      src={helpers.getCarImage(car)} 
+                      src={carHelpers.getCarImage(car)} 
                       alt={car.nombre || car.name || 'Car'} 
                     />
                   </div>
                   <div className="car-content">
                     <div className="car-top">
                       <h4><a href="#">{car.nombre || car.name || 'Vehicle'}</a></h4>
-                      <span><i className="fas fa-star"></i> {data.defaults.rating}</span>
+                      <span><i className="fas fa-star"></i> {carData.defaults.rating}</span>
                     </div>
                     <ul className="car-list">
-                      <li><i className="far fa-car"></i>{data.labels.model}: {car.modelo || car.modeloAnio || 'N/A'}</li>
-                      <li><i className="far fa-user-tie"></i>{car.capacidad || data.defaults.capacity} {data.labels.people}</li>
-                      <li><i className="far fa-gas-pump"></i>{car.tipoCombustible || data.defaults.fuel}</li>
-                      <li><i className="far fa-road"></i>{car.rendimiento || data.defaults.efficiency}</li>
-                      <li><i className="far fa-steering-wheel"></i>{car.transmision || data.defaults.transmission}</li>
+                      <li><i className="far fa-car"></i>{carData.labels.model}: {car.modelo || car.modeloAnio || 'N/A'}</li>
+                      <li><i className="far fa-user-tie"></i>{car.capacidad || carData.defaults.capacity} {carData.labels.people}</li>
+                      <li><i className="far fa-gas-pump"></i>{car.tipoCombustible || carData.defaults.fuel}</li>
+                      <li><i className="far fa-road"></i>{car.rendimiento || carData.defaults.efficiency}</li>
+                      <li><i className="far fa-steering-wheel"></i>{car.transmision || carData.defaults.transmission}</li>
                     </ul>
                     <div className="car-footer">
                       <span className="car-price">
-                        {helpers.formatPrice(car.precio)} 
-                        <sub>{data.labels.perMonth}</sub>
+                        {carHelpers.formatPrice(car.precio)} 
+                        <sub>{carData.labels.perMonth}</sub>
                       </span>
                       <a href="#" className="car-favorite-btn"><i className="far fa-heart"></i></a>
-                      <a href={`/subasta/${car.torreID || car.id}`} className="theme-btn">{data.labels.rentNow}</a>
+                      <a href={`/subasta/${car.torreID || car.id}`} className="theme-btn">{carData.labels.rentNow}</a>
                     </div>
                   </div>
                 </div>
@@ -159,14 +269,14 @@ const CarArea = ({ scope = 'main' }) => {
             ))
           ) : (
             <div className="col-12 text-center">
-              <div className="alert alert-info">{data.messages.noResults}</div>
+              <div className="alert alert-info">{carData.messages.noResults}</div>
             </div>
           )}
         </div>
         
         <div className="text-center mt-4">
           <a href="#" className="theme-btn" onClick={handleLoadMore}>
-            {data.labels.loadMore} <i className="far fa-arrow-rotate-right"></i>
+            {carData.labels.loadMore} <i className="far fa-arrow-rotate-right"></i>
           </a>
         </div>
       </div>

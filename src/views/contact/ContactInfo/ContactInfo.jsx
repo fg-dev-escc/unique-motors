@@ -1,17 +1,39 @@
 import React from 'react';
 
-import { contactInfoConfig } from './contactInfoConfig';
+// data
+const contactInfoData = {
+  contactInfo: [
+    {
+      icon: "fal fa-map-marker-alt",
+      title: "Dirección de Oficina",
+      content: "Av. Revolución 1234, Col. Centro, Ciudad de México"
+    },
+    {
+      icon: "fal fa-phone",
+      title: "Llámanos",
+      content: "+52 55 1234 5678"
+    },
+    {
+      icon: "fal fa-envelope",
+      title: "Escríbenos",
+      content: "contacto@uniquemotors.mx"
+    },
+    {
+      icon: "fal fa-clock",
+      title: "Horario de Atención",
+      content: "Lun - Vie (9:00AM - 6:00PM)"
+    }
+  ]
+};
 
 const ContactInfo = () => {
-
-  const { data } = contactInfoConfig;
-
+  // render
   return (
     <div className="contact-area py-120">
       <div className="container">
         <div className="contact-content">
           <div className="row">
-            {data.contactInfo.map((info, index) => (
+            {contactInfoData.contactInfo.map((info, index) => (
               <div key={index} className="col-md-3">
                 <div className="contact-info">
                   <div className="contact-info-icon">
